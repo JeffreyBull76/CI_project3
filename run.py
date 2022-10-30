@@ -17,6 +17,7 @@ print("""
  ██████   ██████  ██ ███████
 \n""")
 CHOS_CAT = str("1")
+PLYR_SCORE = 0
 
 
 def set_cat(choice):
@@ -69,6 +70,5 @@ def quest_catg():
 
 
 quest_catg()
-print(CHOS_CAT)
 
 exec(open("quiz.py").read())

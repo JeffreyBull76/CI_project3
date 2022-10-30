@@ -13,25 +13,17 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('python_quiz_questions')
 
-print("WELCOME TO THE QUIZ - ANSWER EACH QUESTION TO PROCEED !\n")
 print("Your answers are given by selecting the letter for each choice")
 print("So you if you think the answer is B you would type B")
 
 QLIST = []
-"""
-CHOS_CAT is defined in the run.py script and accessed here
-"""
-# replace this with a function that sets the category spreadsheet
-# spreadsheet categories can be renamed with numbers and use chos_cat 
-# to replace 'questions' in the below code
-print(CHOS_CAT)
 
 
 def set_questions():
     """
     Question function
     """
-    quest = SHEET.worksheet('questions')
+    quest = SHEET.worksheet(f'{CHOS_CAT}')
     quest_num = 1
     print("Please wait building question database...\n")
 
@@ -64,8 +56,10 @@ def check_question(answer, rang1, rang2):
     """
     Checks to see if answer is correct or incorrect
     """
+    global PLYR_SCORE
     if answer.upper() == QLIST[rang2 + 1]:
         print("CORRECT !\n")
+        PLYR_SCORE += 1
     else:
         print("INCORRECT !\n")
 
@@ -93,6 +87,7 @@ def play_game(val1, val2):
     """
     Allows iteration through different questions sequences
     """
+    print(PLYR_SCORE)
     if val1 < 50:
         ask_question(val1, val2)
     else:
