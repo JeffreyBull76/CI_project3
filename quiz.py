@@ -1,5 +1,4 @@
 import gspread
-import sys
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -23,6 +22,8 @@ QLIST = []
 CHOS_CAT is defined in the run.py script and accessed here
 """
 # replace this with a function that sets the category spreadsheet
+# spreadsheet categories can be renamed with numbers and use chos_cat 
+# to replace 'questions' in the below code
 print(CHOS_CAT)
 
 
