@@ -4,22 +4,18 @@ then ask for player input
 """
 
 print("""
-_________  ________  ________  ___________ 
-\_   ___ \ \_____  \ \______ \ \_   _____/ 
-/    \  \/  /   |   \ |    |  \ |    __)_  
-\     \____/    |    \|    `   \|        \ 
- \______  /\_______  /_______  /_______  / 
-        \/         \/        \/        \/  
-________   ____ ___._____________          
-\_____  \ |    |   \   \____    /          
- /  / \  \|    |   /   | /     /           
-/   \_/.  \    |  /|   |/     /_           
-\_____\ \_/______/ |___/_______ \          
-       \__>                    \/       
+ ██████  ██████  ██████  ███████ 
+██      ██    ██ ██   ██ ██
+██      ██    ██ ██   ██ █████   
+██      ██    ██ ██   ██ ██  
+ ██████  ██████  ██████  ███████ 
+
+ ██████  ██    ██ ██ ███████
+██    ██ ██    ██ ██    ███      
+██    ██ ██    ██ ██   ███   
+██ ▄▄ ██ ██    ██ ██  ███        
+ ██████   ██████  ██ ███████
 \n""")
-print("WELCOME HUMAN... ARE YOU READY TO PLAY?")
-print("SELECT FROM A CATEGORY BELOW TO CHOOSE YOUR QUIZ SUBJECT\n")
-print("Python = 1 | JS = 2 | HTML = 3\n")
 CHOS_CAT = str("1")
 
 
@@ -60,6 +56,10 @@ def quest_catg():
     """
     validated = 0
     while validated < 1:
+        print("WELCOME HUMAN... ARE YOU READY TO PLAY?")
+        print("SELECT FROM A CATEGORY BELOW TO CHOOSE YOUR QUIZ SUBJECT\n")
+        print("Python = 1 | JS = 2 | HTML = 3\n")
+
         choice = input("Enter your category here 1, 2 or 3:\n")
 
         if validate_choice(choice):
@@ -70,3 +70,5 @@ def quest_catg():
 
 quest_catg()
 print(CHOS_CAT)
+
+exec(open("quiz.py").read())

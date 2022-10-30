@@ -19,6 +19,11 @@ print("Your answers are given by selecting the letter for each choice")
 print("So you if you think the answer is B you would type B")
 
 QLIST = []
+"""
+CHOS_CAT is defined in the run.py script and accessed here
+"""
+# replace this with a function that sets the category spreadsheet
+print(CHOS_CAT)
 
 
 def set_questions():
@@ -90,7 +95,9 @@ def play_game(val1, val2):
     if val1 < 50:
         ask_question(val1, val2)
     else:
-        sys.exit("GAME OVER!")
+        # sys.exit("GAME OVER!")
+        print("GAME OVER!")
+        exec(open("run.py").read())
 
 
 play_game(0, 8)
@@ -99,5 +106,5 @@ play_game(0, 8)
 # NEXT we must track and itterate the players score
 # THEN write that score to the worksheet with a username
 
-# EXTRA WORK allow selecting difficulty and different categories
-# TRY to implement some form of method to show I can use this
+# EXTRA WORK We must control the game over part and allow the user more control
+# over when the run.py file is executed to play again
