@@ -16,6 +16,7 @@ print("""
 ██ ▄▄ ██ ██    ██ ██  ███        
  ██████   ██████  ██ ███████
 \n""")
+print("WELCOME HUMAN... ARE YOU READY TO PLAY?")
 CHOS_CAT = str("1")
 PLYR_SCORE = 0
 
@@ -28,13 +29,13 @@ def set_cat(choice):
     global CHOS_CAT
     if choice == "1":
         CHOS_CAT = str("1")
-        print("category is Python")
+        print("category is Python\n")
     elif choice == "2":
         CHOS_CAT = str("2")
-        print("category is JS")
+        print("category is JS\n")
     else:
         CHOS_CAT = str("3")
-        print("category is HTML")
+        print("category is HTML\n")
 
 
 def validate_choice(choice):
@@ -44,7 +45,7 @@ def validate_choice(choice):
     return false
     """
     if choice not in ("1", "2", "3"):
-        print("Please choose category by typing 1, 2 or 3")
+        print("\033[0;37;41mChoose category by typing 1, 2 or 3\033[0;37;48m")
         return False
     else:
         return True
@@ -57,14 +58,13 @@ def quest_catg():
     """
     validated = 0
     while validated < 1:
-        print("WELCOME HUMAN... ARE YOU READY TO PLAY?")
-        print("SELECT FROM A CATEGORY BELOW TO CHOOSE YOUR QUIZ SUBJECT\n")
+        print("SELECT A CATEGORY TO CHOOSE YOUR QUIZ SUBJECT\n")
         print("Python = 1 | JS = 2 | HTML = 3\n")
 
         choice = input("Enter your category here 1, 2 or 3:\n")
 
         if validate_choice(choice):
-            print("Thank you for validating")
+            print("Thank you for validating\n")
             validated += 1
             set_cat(choice)
 

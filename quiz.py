@@ -14,7 +14,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('python_quiz_questions')
 
 print("Your answers are given by selecting the letter for each choice")
-print("So you if you think the answer is B you would type B")
+print("So you if you think the answer is B you would type B\n")
 
 QLIST = []
 
@@ -25,9 +25,9 @@ def set_questions():
     """
     quest = SHEET.worksheet(f'{CHOS_CAT}')
     quest_num = 1
-    print("Please wait building question database...\n")
+    print("\033[1;31;40mBuilding question database...\033[0;37;48m\n")
 
-    while quest_num <= 5:
+    while quest_num <= 7:
         for i in range(1, 6):
             QLIST.extend(
                 [quest.col_values(i)[0], quest.col_values(i)[quest_num]]
@@ -44,8 +44,8 @@ def validate_question(answer):
     Checks for valid answer
     """
     if answer.upper() not in ("A", "B", "C"):
-        print("Answer is not valid!")
-        print("Please answer with A, B or C\n")
+        print("\033[0;37;41mANSWER IS NOT VALID !\033[0;37;48m")
+        print("Please answer with A, B or C !")
         return False
     else:
         print("Answer is valid!\n")
@@ -74,7 +74,7 @@ def ask_question(rang1, rang2):
 
     while quest_cnt < 2:
         for i in range(rang1, rang2, 2):
-            print(f"{QLIST[i]}: {QLIST[i + 1]}")
+            print(f"\033[1;32;40m{QLIST[i]}: {QLIST[i + 1]}\033[0;37;48m")
 
         answer = input("Enter your answer here:\n")
 
@@ -87,8 +87,8 @@ def play_game(val1, val2):
     """
     Allows iteration through different questions sequences
     """
-    print(PLYR_SCORE)
-    if val1 < 50:
+    print("\033[1;36;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
+    if val1 < 70:
         ask_question(val1, val2)
     else:
         # sys.exit("GAME OVER!")
