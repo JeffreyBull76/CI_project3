@@ -4,27 +4,31 @@ Onload text and define global list that holds the questions chosen
 print("Your answers are given by selecting the letter for each choice")
 print("So you if you think the answer is B you would type B\n")
 
-QLIST = []
+# QLIST = []
 
 
 def set_questions():
     """
     Question function
     """
-    quest = SHEET.worksheet(f'{CHOS_CAT}')
-    quest_num = 1
-    print("\033[1;31;40mBuilding question database...\033[0;37;48m\n")
+    get_quest = SHEET.worksheet(f'{CHOS_CAT}').get_all_values()
+    return get_quest
 
-    while quest_num <= 6:
-        for i in range(1, 6):
-            QLIST.extend(
-                [quest.col_values(i)[0], quest.col_values(i)[quest_num]]
-                )
+    # quest = SHEET.worksheet(f'{CHOS_CAT}')
+    # quest_num = 1
+    # print("\033[1;31;40mBuilding question database...\033[0;37;48m\n")
 
-        quest_num += 1
+    # while quest_num <= 6:
+    #     for i in range(1, 6):
+    #         QLIST.extend(
+    #             [quest.col_values(i)[0], quest.col_values(i)[quest_num]]
+    #             )
+
+    #     quest_num += 1
 
 
-set_questions()
+q_list = set_questions()
+# print(q_list)
 
 
 def validate_question(answer):
@@ -45,13 +49,15 @@ def check_question(answer, rang1, rang2):
     Checks to see if answer is correct or incorrect
     """
     global PLYR_SCORE
-    if answer.upper() == QLIST[rang2 + 1]:
+    # if answer.upper() == QLIST[rang2 + 1]:
+    if answer.upper() == q_list[rang2][4]:
         print("CORRECT !\n")
         PLYR_SCORE += 1
     else:
         print("INCORRECT !\n")
 
-    play_game(rang1 + 10, rang2 + 10)
+    # play_game(rang1 + 10, rang2 + 10)
+    play_game(rang1, rang2 + 1)
 
 
 def ask_question(rang1, rang2):
@@ -61,8 +67,11 @@ def ask_question(rang1, rang2):
     quest_cnt = 1
 
     while quest_cnt < 2:
-        for i in range(rang1, rang2, 2):
-            print(f"\033[1;32;40m{QLIST[i]}: {QLIST[i + 1]}\033[0;37;48m")
+        for i in range(0, 4):
+            print(f"\033[1;32;40m{q_list[rang1][i]}: {q_list[rang2][i]}\033[0;37;48m")
+    # while quest_cnt < 2:
+    #     for i in range(rang1, rang2, 2):
+    #         print(f"\033[1;32;40m{QLIST[i]}: {QLIST[i + 1]}\033[0;37;48m")
 
         answer = input("Enter your answer here:\n")
 
@@ -108,4 +117,4 @@ def play_game(val1, val2):
         # exec(open("run.py").read())
 
 
-play_game(0, 8)
+play_game(0, 1)
