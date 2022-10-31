@@ -66,12 +66,12 @@ def scoretable():
 
     validated = 0
     while validated < 1:
-        cont = input("Press A to continue")
-        if cont == "A":
+        cont = input("PRESS A TO CONTINUE\n")
+        if cont.upper() == "A":
             validated += 1
             start_menu()
         else:
-            print("\033[0;37;41mPRESS A TO CONTINUE[0;37;48m")
+            print("\033[0;37;41mINVALID INPUT !\033[0;37;48m\n")
 
 
 def start_menu():
