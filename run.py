@@ -10,17 +10,14 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('python_quiz_questions')
 PLYR_SCORE = 0
 """
-Welcome message and basic instructions text
-then ask for player input
+Title screen
 """
-
 print("""
  ██████  ██████  ██████  ███████ 
 ██      ██    ██ ██   ██ ██
@@ -37,31 +34,40 @@ print("""
 
 CHOS_CAT = str("1")
 PLYR_SCORE = 0
+"""
+Set the two global values used throughout our quiz
+"""
 
 
 def instructions():
     """
     Instructions function
     """
-    print("Welcome to the quiz")
-    print("""
-    In the main menu you can select a quiz category 
-    Upon selecting a question list will be built from an external spreadsheet
-    You will then answer each question by selecting A B or C
-    NOTE YOU MUST ANSWER WITH A B OR C for each question
-    No other input is allowed...
-    Or you can view the scores of the top 3 players by selecting the scoretable
-    """)
+    print("Welcome to the quiz\n")
+    print("In the main menu you can select a quiz category")
+    print("A question list will then be built from an external spreadsheet")
+    print("You will then answer each question by selecting A B or C")
+    print("NOTE YOU MUST ANSWER WITH A B OR C for each question")
+    print("No other input is allowed...\n")
+    print("Or you can view the scoretable")
+    print("You can select top 3 or most recent score\n")
     start_menu()
+
+
+def scoretable():
+    """
+    Scoretable function
+    """
+    print("Scores")
 
 
 def start_menu():
     """
-    test menu
+    Menu that allows players to select from instructions
+    scoretable or play the game
     """
     global PLYR_SCORE
     PLYR_SCORE = 0
-    print(PLYR_SCORE)
     print("SELECT FROM THE MENU BELOW TO START:")
     print("INSTRUCTIONS - A")
     print("SCORETABLE - B")
@@ -80,7 +86,7 @@ def start_menu():
 def set_cat(choice):
     """
     This function sets the chosen category for the player
-    once the input has been validated
+    this value is held globally to avoid to much passing around
     """
     global CHOS_CAT
     if choice == "1":
@@ -125,12 +131,14 @@ def quest_catg():
             set_cat(choice)
             q_l = set_questions()
             play_game(0, 1, q_l)
-# exec(open("quiz.py").read())
 
 
 def set_questions():
     """
-    Question function
+    This function uses the global chosen cat variable
+    to grab the correct questions from our external spreadsheet
+    this is then compiled to a list of lists and returned for use
+    in other functions
     """
     print("Your answers are given by selecting the letter for each choice")
     print("So you if you think the answer is B you would type B\n")
@@ -140,7 +148,10 @@ def set_questions():
 
 def validate_question(answer):
     """
-    Checks for valid answer
+    Checks for valid answer 
+    This is explicitly set to only accept A, B or C
+    but does convert small to upper case to avoid
+    being overly picky
     """
     if answer.upper() not in ("A", "B", "C"):
         print("\033[0;37;41mANSWER IS NOT VALID !\033[0;37;48m")
@@ -154,6 +165,9 @@ def validate_question(answer):
 def check_question(answer, rng1, rng2, q_l):
     """
     Checks to see if answer is correct or incorrect
+    converts the input again to uppercase to avoid confusion
+    then checks it against the answers pulled from out external sheet
+    ranges are used to control this
     """
     global PLYR_SCORE
     if answer.upper() == q_l[rng2][4]:
@@ -167,7 +181,10 @@ def check_question(answer, rng1, rng2, q_l):
 
 def ask_question(rng1, rng2, q_l):
     """
-    Question function
+    Takes the range values from the the play game function and
+    uses the them to print the relevant questions from our 
+    list of lists, checks valid input and then checks to 
+    see if the answer is correct in a while loop
     """
     quest_cnt = 1
 
@@ -184,7 +201,10 @@ def ask_question(rng1, rng2, q_l):
 
 def game_over():
     """
-    end game and save score function
+    accepts no values itself, runs on game over allows
+    user to input their name (which we strip of all whitespace)
+    and then stores this to our score spreadsheet, will not allow
+    inputs under 5 characters.
     """
     print(f"Your score was {PLYR_SCORE}/10")
     print("GAME OVER!\n")
@@ -214,7 +234,10 @@ def game_over():
 
 def play_game(val1, val2, q_l):
     """
-    Allows iteration through different questions sequences
+    Passes the range values to our ask question function and also ensures 
+    our list of lists (questions) are correctly passed around for use in 
+    game loop. Each time this runs it increments a val which checks for 
+    the end of the game (no more questions) based on a known value (10)
     """
     print("\033[1;32;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
     if val2 < 11:
