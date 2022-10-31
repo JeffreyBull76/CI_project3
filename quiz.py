@@ -82,7 +82,7 @@ def game_over():
     while name_val < 2:
         ply_nam = input("ENTER YOUR NAME TO SAVE YOUR SCORE\n")
 
-        if ply_nam and len(ply_nam) >= 5:
+        if ply_nam and len(ply_nam.strip()) >= 5:
             str1 = ply_nam
             str2 = PLYR_SCORE
             final_str = f'{str1} ' + f'{str2}'
