@@ -3,6 +3,7 @@ Import modules for use in app
 """
 import gspread
 from google.oauth2.service_account import Credentials
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -58,7 +59,19 @@ def scoretable():
     """
     Scoretable function
     """
-    print("Scores")
+    print("CHECK OUT OUR HIGH SCORE TABLE BELOW\n")
+    get_scores = SHEET.worksheet('scores').get_all_values()
+    score_list = get_scores
+    print(tabulate(score_list, headers=['Name', 'Score']))
+
+    validated = 0
+    while validated < 1:
+        cont = input("Press A to continue")
+        if cont == "A":
+            validated += 1
+            start_menu()
+        else:
+            print("\033[0;37;41mPRESS A TO CONTINUE[0;37;48m")
 
 
 def start_menu():
@@ -148,7 +161,7 @@ def set_questions():
 
 def validate_question(answer):
     """
-    Checks for valid answer 
+    Checks for valid answer
     This is explicitly set to only accept A, B or C
     but does convert small to upper case to avoid
     being overly picky
@@ -182,8 +195,8 @@ def check_question(answer, rng1, rng2, q_l):
 def ask_question(rng1, rng2, q_l):
     """
     Takes the range values from the the play game function and
-    uses the them to print the relevant questions from our 
-    list of lists, checks valid input and then checks to 
+    uses the them to print the relevant questions from our
+    list of lists, checks valid input and then checks to
     see if the answer is correct in a while loop
     """
     quest_cnt = 1
@@ -234,9 +247,9 @@ def game_over():
 
 def play_game(val1, val2, q_l):
     """
-    Passes the range values to our ask question function and also ensures 
-    our list of lists (questions) are correctly passed around for use in 
-    game loop. Each time this runs it increments a val which checks for 
+    Passes the range values to our ask question function and also ensures
+    our list of lists (questions) are correctly passed around for use in
+    game loop. Each time this runs it increments a val which checks for
     the end of the game (no more questions) based on a known value (10)
     """
     print("\033[1;32;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
