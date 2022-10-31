@@ -39,20 +39,39 @@ CHOS_CAT = str("1")
 PLYR_SCORE = 0
 
 
+def instructions():
+    """
+    Instructions function
+    """
+    print("Welcome to the quiz")
+    print("""
+    In the main menu you can select a quiz category 
+    Upon selecting a question list will be built from an external spreadsheet
+    You will then answer each question by selecting A B or C
+    NOTE YOU MUST ANSWER WITH A B OR C for each question
+    No other input is allowed...
+    Or you can view the scores of the top 3 players by selecting the scoretable
+    """)
+    start_menu()
+
+
 def start_menu():
     """
     test menu
     """
+    global PLYR_SCORE
+    PLYR_SCORE = 0
+    print(PLYR_SCORE)
     print("SELECT FROM THE MENU BELOW TO START:")
     print("INSTRUCTIONS - A")
     print("SCORETABLE - B")
     print("PLAY GAME - C")
     men_choice = input("ENTER A, B OR C\n")
-    if men_choice == "A":
+    if men_choice.upper() == "A":
         instructions()
-    elif men_choice == "B":
+    elif men_choice.upper() == "B":
         scoretable()
-    elif men_choice == "C":
+    elif men_choice.upper() == "C":
         quest_catg()
     else:
         start_menu()
@@ -104,6 +123,8 @@ def quest_catg():
             print("Thank you for validating\n")
             validated += 1
             set_cat(choice)
+            q_l = set_questions()
+            play_game(0, 1, q_l)
 # exec(open("quiz.py").read())
 
 
@@ -130,7 +151,7 @@ def validate_question(answer):
         return True
 
 
-def check_question(answer, rng1, rng2):
+def check_question(answer, rng1, rng2, q_l):
     """
     Checks to see if answer is correct or incorrect
     """
@@ -141,10 +162,10 @@ def check_question(answer, rng1, rng2):
     else:
         print("INCORRECT !\n")
 
-    play_game(rng1, rng2 + 1)
+    play_game(rng1, rng2 + 1, q_l)
 
 
-def ask_question(rng1, rng2):
+def ask_question(rng1, rng2, q_l):
     """
     Question function
     """
@@ -157,7 +178,7 @@ def ask_question(rng1, rng2):
         answer = input("\033[1;32;40mEnter answer here:\033[0;37;48m\n")
 
         if validate_question(answer):
-            check_question(answer, rng1, rng2)
+            check_question(answer, rng1, rng2, q_l)
             quest_cnt += 1
 
 
@@ -165,7 +186,7 @@ def game_over():
     """
     end game and save score function
     """
-    print(f"Your score was {PLYR_SCORE}/{len(q_l)}")
+    print(f"Your score was {PLYR_SCORE}/10")
     print("GAME OVER!\n")
     name_val = 1
 
@@ -184,25 +205,22 @@ def game_over():
             score_value = SHEET.worksheet("scores")
             score_value.append_row(final_score)
             name_val += 1
+            start_menu()
         else:
             print("\033[0;37;41mEnter a valid name...\033[0;37;48m")
             print("\033[0;37;41mNo blankspaces allowed...\033[0;37;48m")
             print("\033[0;37;41mMinimum 5 characters !\033[0;37;48m\n")
 
 
-def play_game(val1, val2):
+def play_game(val1, val2, q_l):
     """
     Allows iteration through different questions sequences
     """
     print("\033[1;32;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
     if val2 < 11:
-        ask_question(val1, val2)
+        ask_question(val1, val2, q_l)
     else:
-        # sys.exit("GAME OVER!")
         game_over()
-        # exec(open("run.py").read())
 
 
 start_menu()
-q_l = set_questions()
-play_game(0, 1)
