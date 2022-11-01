@@ -19,19 +19,19 @@ PLYR_SCORE = 0
 """
 Title screen
 """
-print("""
- ██████  ██████  ██████  ███████ 
+print("""\033[1;32;40m
+ ██████  ██████  ██████  ███████
 ██      ██    ██ ██   ██ ██
-██      ██    ██ ██   ██ █████   
-██      ██    ██ ██   ██ ██  
- ██████  ██████  ██████  ███████ 
+██      ██    ██ ██   ██ █████
+██      ██    ██ ██   ██ ██
+ ██████  ██████  ██████  ███████
 
  ██████  ██    ██ ██ ███████
-██    ██ ██    ██ ██    ███      
-██    ██ ██    ██ ██   ███   
-██ ▄▄ ██ ██    ██ ██  ███        
+██    ██ ██    ██ ██    ███
+██    ██ ██    ██ ██   ███
+██ ▄▄ ██ ██    ██ ██  ███
  ██████   ██████  ██ ███████
-\n""")
+\033[0;37;48m\n""")
 
 CHOS_CAT = str("1")
 PLYR_SCORE = 0
@@ -44,14 +44,15 @@ def instructions():
     """
     Instructions function
     """
-    print("Welcome to the quiz\n")
+    print("\033[1;32;40mWELCOME TO THE QUIZ !\033[0;37;48m\n")
     print("In the main menu you can select a quiz category")
     print("A question list will then be built from an external spreadsheet")
     print("You will then answer each question by selecting A B or C")
-    print("NOTE YOU MUST ANSWER WITH A B OR C for each question")
+    print("NOTE - YOU MUST ANSWER BY TYPING THE LETTER A, B OR C")
     print("No other input is allowed...\n")
-    print("Or you can view the scoretable")
-    print("You can select top 3 or most recent score\n")
+    print("At game over you save your score and choose to play again!")
+    print("\033[1;32;40mVIEW THE SCORETABLE AT MAIN MENU!\033[0;37;48m")
+    print("______________________________________________________________\n")
     start_menu()
 
 
@@ -62,8 +63,9 @@ def scoretable():
     print("CHECK OUT OUR HIGH SCORE TABLE BELOW\n")
     get_scores = SHEET.worksheet('scores').get_all_values()
     score_list = get_scores
-    print(tabulate(score_list, headers=['Name', 'Score']))
-
+    print(tabulate(score_list, headers="firstrow"))
+    print("______________________________________________________________\n")
+    
     validated = 0
     while validated < 1:
         cont = input("PRESS A TO CONTINUE\n")
@@ -81,11 +83,12 @@ def start_menu():
     """
     global PLYR_SCORE
     PLYR_SCORE = 0
-    print("SELECT FROM THE MENU BELOW TO START:")
+    print("\033[1;36;40mSELECT FROM THE MENU BELOW TO START:\033[0;37;48m")
     print("INSTRUCTIONS - A")
     print("SCORETABLE - B")
     print("PLAY GAME - C")
     men_choice = input("ENTER A, B OR C\n")
+    print("______________________________________________________________\n")
     if men_choice.upper() == "A":
         instructions()
     elif men_choice.upper() == "B":
