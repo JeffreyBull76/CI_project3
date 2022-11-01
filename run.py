@@ -47,7 +47,7 @@ def instructions():
     print("\033[1;32;40mWELCOME TO THE QUIZ !\033[0;37;48m\n")
     print("In the main menu you can select a quiz category")
     print("A question list will then be built from an external spreadsheet")
-    print("You will then answer each question by selecting A B or C")
+    print("You will then answer each question by selecting A B or C\n")
     print("NOTE - YOU MUST ANSWER BY TYPING THE LETTER A, B OR C")
     print("No other input is allowed...\n")
     print("At game over you save your score and choose to play again!")
@@ -65,10 +65,11 @@ def scoretable():
     score_list = get_scores
     print(tabulate(score_list, headers="firstrow"))
     print("______________________________________________________________\n")
-    
+
     validated = 0
     while validated < 1:
         cont = input("PRESS A TO CONTINUE\n")
+        print("                          \n")
         if cont.upper() == "A":
             validated += 1
             start_menu()
@@ -136,10 +137,10 @@ def quest_catg():
     """
     validated = 0
     while validated < 1:
-        print("SELECT A CATEGORY TO CHOOSE YOUR QUIZ SUBJECT\n")
-        print("Python = 1 | JS = 2 | HTML = 3\n")
+        print("\033[1;32;40mSELECT A QUIZ CATEGORY\033[0;37;48m\n")
+        print("PYTHON = 1 | JS = 2 | HTML = 3\n")
 
-        choice = input("Enter your category here 1, 2 or 3:\n")
+        choice = input("ENTER CATEGORY HERE - 1, 2 or 3:\n")
 
         if validate_choice(choice):
             print("Thank you for validating\n")
@@ -156,7 +157,7 @@ def set_questions():
     this is then compiled to a list of lists and returned for use
     in other functions
     """
-    print("Your answers are given by selecting the letter for each choice")
+    print("\033[1;31;40mPLEASE ANSWER BY TYPING A, B or C !\033[0;37;48m")
     print("So you if you think the answer is B you would type B\n")
     get_quest = SHEET.worksheet(f'{CHOS_CAT}').get_all_values()
     return get_quest
@@ -174,7 +175,7 @@ def validate_question(answer):
         print("Please answer with A, B or C !")
         return False
     else:
-        print("Answer is valid!\n")
+        print("          \n")
         return True
 
 
@@ -187,10 +188,11 @@ def check_question(answer, rng1, rng2, q_l):
     """
     global PLYR_SCORE
     if answer.upper() == q_l[rng2][4]:
-        print("CORRECT !\n")
+        print("\033[1;32;40mCORRECT !\033[0;37;48m")
+        print("\033[1;32;40mSCORE + 1\033[0;37;48m\n")
         PLYR_SCORE += 1
     else:
-        print("INCORRECT !\n")
+        print("\033[1;31;40mINCORRECT !\033[0;37;48m\n")
 
     play_game(rng1, rng2 + 1, q_l)
 
@@ -205,6 +207,7 @@ def ask_question(rng1, rng2, q_l):
     quest_cnt = 1
 
     while quest_cnt < 2:
+        print(f"QUESTION NUMBER: {rng2}")
         for i in range(0, 4):
             print(f"\033[1;34;40m{q_l[rng1][i]}:\033[0;37;48m {q_l[rng2][i]}")
 
@@ -234,6 +237,7 @@ def game_over():
         ply_nam = remove(play_name)
 
         if ply_nam and len(ply_nam) >= 5:
+            print("          \n")
             str1 = ply_nam
             str2 = PLYR_SCORE
             final_str = f'{str1} ' + f'{str2}'
@@ -255,7 +259,7 @@ def play_game(val1, val2, q_l):
     game loop. Each time this runs it increments a val which checks for
     the end of the game (no more questions) based on a known value (10)
     """
-    print("\033[1;32;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
+    print("\033[1;36;40mSCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
     if val2 < 11:
         ask_question(val1, val2, q_l)
     else:
