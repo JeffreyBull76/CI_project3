@@ -211,7 +211,7 @@ def ask_question(rng1, rng2, q_l):
         for i in range(0, 4):
             print(f"\033[1;34;40m {q_l[rng1][i]}:\033[0;37;48m {q_l[rng2][i]}")
 
-        answer = input("\033[1;32;40m Enter answer here:\033[0;37;48m\n")
+        answer = input("\033[1;32;40m Enter answer here:\033[0;37;48m\n ")
 
         if validate_question(answer):
             check_question(answer, rng1, rng2, q_l)
@@ -236,7 +236,7 @@ def game_over():
         play_name = input(" ENTER YOUR NAME TO SAVE YOUR SCORE\n ")
         ply_nam = remove(play_name)
 
-        if ply_nam and len(ply_nam) >= 5:
+        if ply_nam and 3 < len(ply_nam) < 9:
             print("          \n")
             str1 = ply_nam
             str2 = PLYR_SCORE
@@ -249,7 +249,7 @@ def game_over():
         else:
             print("\033[0;37;41m Enter a valid name...\033[0;37;48m")
             print("\033[0;37;41m No blankspaces allowed...\033[0;37;48m")
-            print("\033[0;37;41m Minimum 5 characters !\033[0;37;48m\n")
+            print("\033[0;37;41m Between 4 & 8 characters long\033[0;37;48m\n")
 
 
 def play_game(val1, val2, q_l):
