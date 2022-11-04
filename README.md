@@ -65,7 +65,7 @@ Welcome to my Code Institute Project 3 python app.
 --------------------------------------------------------
 ### FLOWCHART
 
-* Here you can see the general overview the app and how the user navigates through it. 
+* Here you can see the general overview of the app and how the user navigates through it. 
 * Each arrow has at least one validation process in place to prevent invalid inputs.
 
 ![](assets/rmimages/Project3FlowChart.jpeg)
@@ -107,7 +107,7 @@ Welcome to my Code Institute Project 3 python app.
 --------------------------------------------------------
 * ### Choose category
    * ![](assets/rmimages/select1.png)
-   * This part of the quiz presented the biggest challenge, or perhaps the threw up the most issues. This part went through numerous changes mainly to prevent pointless calls to the external spreadsheet which kept throwing up API errors when we exceeded the free limit per minute.
+   * This part of the quiz presented the biggest challenge, or rather threw up the most issues. This part went through numerous changes mainly to prevent pointless calls to the external spreadsheet which kept throwing up API errors when we exceeded the free limit per minute.
    * Ultimately it takes the users selection, loads those questions into a list of lists and then returns that value to the 'game loop'.
    * ![](assets/rmimages/new_code1.png)
    * Above you can see the original code (commented out in green) vs the newest most up to date way of building the question list.
@@ -134,7 +134,7 @@ Welcome to my Code Institute Project 3 python app.
    * It is worth noting that try blocks were considered for this as they allow for many states to be checked. But in this instance as the user input is almost exclusively just required to be one of 3 keys, if / else statements seemed more efficient and cleaner.
    * ![](assets/rmimages/invalidquest1.png)
    * The exception to the above was the name entry on game over.
-   * The first version of this check to see if the users name exceeded a certain value and if it did it saved this with the score to the spreadsheet.
+   * The first version of this checked to see if the users name exceeded a certain value, and if it did it saved this with the score to the spreadsheet.
    * After a mentor sesssion it was pointed out this feature had issues, as the way the data is written is in list form. The user could 'break' this by adding blank spaces in their name or worse yet simply add 5 blankspaces
    * This was fixed by doing two things.
         * First the input is run from another variable call which strips it of any blankspaces
@@ -154,7 +154,7 @@ Welcome to my Code Institute Project 3 python app.
 ### [Contents Menu](<#table-of-contents>)
 --------------------------------------------------------
 ### FUTURE FEATURES
-   * A way to display the scores in a more interesting was considered. For example allowing the user to select top 3 or order them by value, this could have been done but felt needlessly clunky for such a simple score set. Could be added in future if the app ever saw actual use.
+   * A way to display the scores in a more interesting way wass considered. For example allowing the user to select top 3 or order them by value, this could have been done but felt needlessly clunky for such a simple score set. Could be added in future if the app ever saw actual use.
    * Many more questions could exist in any live version, at which point a randomiser function could be added. This could easily be done by simply grabbing the questions in a slightly randomised way then ommitting that choice from subsequent calls.
    * Also following the above a way to select question count and seperate score tables for each 'difficulty'
 
@@ -166,7 +166,7 @@ Welcome to my Code Institute Project 3 python app.
 
 * Migrating the code into 1 file and various functions meant adding various data variables across numerous functions so these were passed between the various loops (such as question number, score, etc)
 
-* Ultimately 2 global variables exist. While possible to remove these (and in a larger more complex app it would be worthwhile to do so) it felt cleaner and more efficient to track the chosen category and score globally as these are constats throughout the quiz. Both are altered by user input at various points. The score is cleared on starting a new game, and the category is simply overwritten with each new game as required.
+* Ultimately 2 global variables exist. While possible to remove these (and in a larger more complex app it would be worthwhile to do so) it felt cleaner and more efficient to track the chosen category, and score, globally. These are constants throughout the quiz. Both are altered by user input at various points. The score is cleared on starting a new game, and the category is simply overwritten with each new game as required.
 
 * As mentioned previously I ran into API errors in early versions due too many calls to the spreadsheet.
 
