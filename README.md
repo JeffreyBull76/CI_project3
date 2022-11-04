@@ -1,5 +1,7 @@
 # **PYTHON QUIZ**
 
+![](assets/rmimages/amiresponsive_pp3.png)
+
 Welcome to my Code Institute Project 3 python app.
 
 ## [**Table of Contents**](<#table-of-contents>)
@@ -30,8 +32,6 @@ Welcome to my Code Institute Project 3 python app.
 [**DEPLOYMENT**](<#deployment>)
 
 [**ACKNOWLEDGEMENTS**](<#acknowledgements>)
-
-![](assets/rmimages/amiresponsive_pp3.png)
 
 --------------------------------------------------------
 ### OVERVIEW
@@ -146,6 +146,7 @@ Welcome to my Code Institute Project 3 python app.
 ### [Contents Menu](<#table-of-contents>)
 --------------------------------------------------------
 * ### Notes
+   * Styling was added throughout to make the text easier to read. Including color and indentation (to avoid the text hugging the app edge) ASCII art was also added to the main loading page.
    * Classes were considered to create the questions, this is still possibly a better solution. But again this was a fairly simple quiz app so it seemed needless to do this, when a simple few functions that get reused already could perform the same thing.
    * Ultimately it felt like inserting them was being done for the sake of it and I decided against their use.
    * The amount of questions was picked for brevity, in reality this could be any number.
@@ -186,6 +187,7 @@ Welcome to my Code Institute Project 3 python app.
 * [Colored text codes](https://ozzmaker.com/add-colour-to-text-in-python/)
 * [Gspread Python API](https://docs.gspread.org/en/v5.6.1/)
 * [Heroku for deployment](https://www.heroku.com)
+* [ASCII art generator](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
 
 ### [Contents Menu](<#table-of-contents>)
 --------------------------------------------------------
