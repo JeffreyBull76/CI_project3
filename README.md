@@ -19,6 +19,7 @@ Welcome to my Code Institute Project 3 python app.
    * [**Choose category**](<#choose-category>)
    * [**Play Game**](<#play-game>)
    * [**UI UX**](<#ui-ux>)
+   * [**Data Model**](<#data-model>)
    * [**Notes**](<#notes>)
 
 [**FUTURE FEATURES**](<#future-features>)
@@ -145,6 +146,13 @@ Welcome to my Code Institute Project 3 python app.
    
 ### [Contents Menu](<#table-of-contents>)
 --------------------------------------------------------
+* ### Data model
+   * The data model is the list of lists. This is created when the user chooses their category. 
+   * It is then passed through numerous functions to allow the question number and details to be tracked during the game.
+   * It only exists in our game loop and ceases to exist when the user returns to the main menu.
+
+### [Contents Menu](<#table-of-contents>)
+--------------------------------------------------------
 * ### Notes
    * Styling was added throughout to make the text easier to read. Including color and indentation (to avoid the text hugging the app edge) ASCII art was also added to the main loading page.
    * Classes were considered to create the questions, this is still possibly a better solution. But again this was a fairly simple quiz app so it seemed needless to do this, when a simple few functions that get reused already could perform the same thing.
@@ -168,6 +176,8 @@ Welcome to my Code Institute Project 3 python app.
 * Migrating the code into 1 file and various functions meant adding various data variables across numerous functions so these were passed between the various loops (such as question number, score, etc)
 
 * Ultimately 2 global variables exist. While possible to remove these (and in a larger more complex app it would be worthwhile to do so) it felt cleaner and more efficient to track the chosen category, and score, globally. These are constants throughout the quiz. Both are altered by user input at various points. The score is cleared on starting a new game, and the category is simply overwritten with each new game as required.
+
+* Numerous small bugs were caught and fixed relating to integers and capitalised inputs. Another major bug was the making sure the data written to the spreadsheet was a string.
 
 * As mentioned previously I ran into API errors in early versions due too many calls to the spreadsheet.
 
