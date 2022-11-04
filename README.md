@@ -31,6 +31,9 @@ Welcome to my Code Institute Project 3 python app.
 
 [**ACKNOWLEDGEMENTS**](<#acknowledgements>)
 
+![](assets/rmimages/amiresponsive_pp3.png)
+
+--------------------------------------------------------
 ### OVERVIEW
 
 * The purpose of this project was to show a working app created with Python from scratch. No code base or examples were used (save for the occasional code hint for a specific problem) but all functions were custom designed for this project. My early idea was to design some form of text based adventure, but I didn't want to get bogged down writing a story when displaying what I have learned in terms of coding was the desired result.
@@ -45,7 +48,7 @@ Welcome to my Code Institute Project 3 python app.
 --------------------------------------------------------
 ### EARLY CONCEPT
 
-#### NOTE - THE TEST VERSION DETAILED BELOW NO LONGER FUNCTION AND ARE PRESENTED PURELY TO SHOW MY WORKFLOW FROM TEST TO FINISHED APP
+#### NOTE - THE TEST VERSION DETAILED BELOW NO LONGER FUNCTIONS AND IS PRESENTED PURELY TO SHOW MY WORKFLOW FROM TEST TO FINISHED APP
 #### THE LINK TO THE REPO CAN BE FOUND [HERE](https://github.com/JeffreyBull76/quiz-test)
 
 * Once a quiz game had been settled on I took a little time to build a test version on github, I chose not to publish this to Heroku. It was purely for testing how I might construct a quiz. So a very basic question and answer function was created that accessed questions from an external spreadsheet. 
