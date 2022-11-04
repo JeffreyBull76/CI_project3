@@ -1,4 +1,4 @@
-# **PYTHON QUIZ**
+# **CODE QUIZ**
 
 ![](assets/rmimages/amiresponsive_pp3.png)
 
