@@ -90,9 +90,13 @@ Welcome to my Code Institute Project 3 python app.
 --------------------------------------------------------
 * ### Scoretable
    * ![](assets/rmimages/score1.png)
+   * This function pulls the data from our spreadsheet (all saved scores are grabbed) and uses the imported tabulate library to display those for the user
+   * It works by using the gspread get_all_values function to build a list of lists with one easy request.
+   * This then requires a user input to return to the main menu. That works on a very simple while loop inside the function itself to validate input.
 --------------------------------------------------------
 * ### Choose category
    * ![](assets/rmimages/select1.png)
+   * 
 --------------------------------------------------------
 * ### Play game
    * ![](assets/rmimages/quiz1.png)

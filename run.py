@@ -257,7 +257,7 @@ def play_game(val1, val2, q_l):
     Passes the range values to our ask question function and also ensures
     our list of lists (questions) are correctly passed around for use in
     game loop. Each time this runs it increments a value which checks for
-    the end of the game (no more questions) based on a known value (10 
+    the end of the game (no more questions) based on a known value (10
     currently but could be randomised or increased if required)
     """
     print("\033[1;36;40m SCORE = " + f'{PLYR_SCORE}\033[0;37;48m')
